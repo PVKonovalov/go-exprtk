@@ -145,3 +145,10 @@ void deleteExprtk(exprtkWrapper obj)
 {
     delete (ExprtkStruct*)obj;
 }
+
+const char* getErrorString(exprtkWrapper obj)
+{
+  ExprtkStruct* exprtkStruct = (ExprtkStruct*)obj;
+
+    return exprtkStruct->parser.error().c_str();
+}

@@ -65,7 +65,7 @@ func (obj GoExprtk) SetVectorVariableValue(varName string, val []float64) {
 func (obj GoExprtk) CompileExpression() error {
 	value := C.compileExpression(obj.exprtk)
 	if value == 0 {
-		return errors.New("failed to compile the expression")
+		return errors.New(obj.GetErrorString())
 	}
 	return nil
 }
@@ -78,4 +78,8 @@ func (obj GoExprtk) GetEvaluatedValue() float64 {
 // Delete ... Destroys the created object and releases the memory
 func (obj GoExprtk) Delete() {
 	C.deleteExprtk(obj.exprtk)
+}
+
+func (obj GoExprtk) GetErrorString() string {
+	return C.GoString(C.getErrorString(obj.exprtk))
 }
