@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include <cstring>
 
 struct DoubleValue{
     std::string varName;
@@ -146,9 +147,8 @@ void deleteExprtk(exprtkWrapper obj)
     delete (ExprtkStruct*)obj;
 }
 
-const char* getErrorString(exprtkWrapper obj)
+void getErrorString(exprtkWrapper obj, char* buf)
 {
   ExprtkStruct* exprtkStruct = (ExprtkStruct*)obj;
-
-    return exprtkStruct->parser.error().c_str();
+  strncpy(buf,exprtkStruct->parser.error().c_str(),254);
 }

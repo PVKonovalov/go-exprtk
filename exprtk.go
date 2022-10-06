@@ -6,6 +6,7 @@ package exprtk
 import "C"
 import (
 	"errors"
+	"unsafe"
 )
 
 // GoExprtk ...Exprtk Structure
@@ -81,5 +82,7 @@ func (obj GoExprtk) Delete() {
 }
 
 func (obj GoExprtk) GetErrorString() string {
-	return C.GoString(C.getErrorString(obj.exprtk))
+	buf := make([]byte, 255)
+	C.getErrorString(obj.exprtk, (*C.char)(unsafe.Pointer(&buf[0])))
+	return string(buf)
 }

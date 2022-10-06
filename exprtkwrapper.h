@@ -31,7 +31,7 @@ double getEvaluatedValue(exprtkWrapper);
 
 void deleteExprtk(exprtkWrapper);
 
-const char* getErrorString(exprtkWrapper);
+void getErrorString(exprtkWrapper, char*);
 
 #ifdef __cplusplus
 }
